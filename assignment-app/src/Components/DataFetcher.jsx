@@ -6,17 +6,35 @@ import { useState, useEffect } from 'react';
 import SearchForm from './SearchForm';
 import Dropdown from './Dropdown'; 
 import Search from './Search';
+import DataStats from './DataStats';
+import { useSearchParams } from 'react-router-dom';
+import { BrowserRouter } from "react-router-dom";
 
-export default function DataFetcher({submittedValue, dropValue }) {
+
+export default function DataFetcher({keyword, filterTypeOptions }) {
         const [data, setData] = useState(null);
         const [loading, setLoading] = useState(false)
         const [error, setError] = useState(false)
-    
+        
+        
         useEffect(() => {
           const fetchData = async () => {
             setLoading(true)
             try{
-            const response = await fetch(`/api/data/search`)
+                //console.log(keyword)
+                //console.log(filterTypeOptions)
+                const params = new URLSearchParams({
+                    'filterType': filterTypeOptions,
+                    'keyword': keyword
+                });
+                const url = `/api/data/search/?${params.toString()}`
+                console.log("the url is ", url)
+
+            const response = await fetch(url)
+           // console.log(params.toString())
+          //  console.log(params.get('filterType'))
+          //  console.log(params.get('keyword'))
+            
             const json = await response.json();
             setData(json);
             if(!response.ok){
@@ -28,22 +46,22 @@ export default function DataFetcher({submittedValue, dropValue }) {
             setLoading(false)
           };
           fetchData();  
-        }, []);
+        }, [keyword, filterTypeOptions]);
         
 
         if (loading) return <div>Loading...</div>;
         if (error) return <div>{error}</div>;
         if (!data) return null;
 
-        console.log(data[0])
+       console.log(data)
          
         return(
             <div>
             datafetcher 
-            <h2>submitted value {submittedValue}</h2> 
-            <h3>dropvalue is {dropValue}</h3>
-
-            </div>
+            <h2>submitted value {keyword}</h2> 
+            <h3>dropvalue is {filterTypeOptions}</h3>
+             <DataStats data={data}/>
+             </div>
         )
         
     }

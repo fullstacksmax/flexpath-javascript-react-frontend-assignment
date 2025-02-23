@@ -4,6 +4,7 @@ const router = express.Router();
 const json = require("./files/user-behavior-data.json");
 
 router.get("/data/search", (req, res, next) => {
+  
   /*
     Valid Query String Parameters
     - operatingSystem
@@ -14,6 +15,9 @@ router.get("/data/search", (req, res, next) => {
 
   const filterType = req.query.filterType || null;
   const keyword = req.query.keyword || null;
+ 
+  console.log('received filterType ', filterType)
+  console.log('received keyword ', keyword)
 
   let searchType;
   if (filterType) {

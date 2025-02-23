@@ -12,15 +12,15 @@ import { useState } from 'react'
 
 export default function Search() {
     const [inputValue, setInputValue] = useState("")
-    const [submittedValue, setSubmittedValue] = useState("")
+    const [keyword, setKeyword] = useState("")
     const handleSubmit = (e) => {
         e.preventDefault();
-        setSubmittedValue(inputValue);
+        setKeyword(inputValue);
         setInputValue("");
     }
-    const [dropValue, setDropValue] = useState("model")
+    const [filterTypeOptions, setfilterTypeOptions] = useState("model")
     const handleChange = (e) => {
-        setDropValue(e.target.value);
+        setfilterTypeOptions(e.target.value);
     };
     
 
@@ -33,13 +33,13 @@ export default function Search() {
                     type="text"
                     value={inputValue}
                     onChange={(e) => setInputValue(e.target.value)}
-                    placeholder="Search by Keyword">
+                    placeholder="google">
 
                 </input>
                 <br></br>
                 <button type='submit'>Search</button>
             </form>
-            <p> search keyword was {submittedValue}</p>
+            <p> search keyword was {keyword}</p>
             search page
 
             <br></br>
@@ -50,10 +50,10 @@ export default function Search() {
                 <option value="operatingSystem">operatingSystem</option>
                 <option value="behaviorClass">behaviorClass</option>
             </select>
-            <p2>dropbox value is {dropValue}</p2>
+            <p2>dropbox value is {filterTypeOptions}</p2>
             {/* <Dropdown />
             <SearchForm /> */}
-            <DataFetcher dropValue={dropValue} submittedValue={submittedValue} />
+            <DataFetcher filterTypeOptions={filterTypeOptions} keyword={keyword} />
 
 
 
