@@ -18,8 +18,12 @@ export default function Search() {
     return (
         <div>
             search page
-            
+            <Dropdown />
+            <SearchForm />
             <DataFetcher />
+            
+            
+
             
         </div>
     )

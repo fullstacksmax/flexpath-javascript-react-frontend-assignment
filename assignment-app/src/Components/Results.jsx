@@ -1,26 +1,22 @@
-import React from 'react'
-import DataFetcher from './DataFetcher'
+import React, { useEffect } from 'react'
+import data from './DataFetcher'
 import Dropdown from './Dropdown'
+import SearchForm from './SearchForm'
 
 
 
 
+export default function Results({data}) {
 
-
-export default function Results({filterType, keyword}) {
-    const searchResults = {}
-    
-   data.forEach(element => {
-    console.log(element)
-    
-   });
+    console.log(data)
 
 
 
 
     return (
-        <div>table with results and stuff
+        
+        <div>
             
-        </div>
+            Results component</div>
     )
 }
