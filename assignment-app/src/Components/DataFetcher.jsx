@@ -3,8 +3,8 @@
 
 import React from 'react'
 import { useState, useEffect } from 'react';
-/* import SearchForm from './SearchForm';
-import Dropdown from './Dropdown'; */
+import SearchForm from './SearchForm';
+import Dropdown from './Dropdown'; 
 import Search from './Search';
 
 export default function DataFetcher({submittedValue, dropValue }) {
@@ -28,7 +28,7 @@ export default function DataFetcher({submittedValue, dropValue }) {
             setLoading(false)
           };
           fetchData();  
-        }, [submittedValue, dropValue]);
+        }, []);
         
 
         if (loading) return <div>Loading...</div>;
@@ -39,7 +39,10 @@ export default function DataFetcher({submittedValue, dropValue }) {
          
         return(
             <div>
-            datafetcher
+            datafetcher 
+            <h2>submitted value {submittedValue}</h2> 
+            <h3>dropvalue is {dropValue}</h3>
+
             </div>
         )
         
