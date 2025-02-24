@@ -46,7 +46,7 @@ export default function DataFetcher({keyword, filterTypeOptions, searched}) {
             setLoading(false)
           };
           fetchData();  
-        }, [keyword, filterTypeOptions]);
+        }, [keyword]);
         
 
         if (loading) return <div>Loading...</div>;
