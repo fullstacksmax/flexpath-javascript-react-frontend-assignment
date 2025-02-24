@@ -13,10 +13,12 @@ import { useState } from 'react'
 export default function Search() {
     const [inputValue, setInputValue] = useState("")
     const [keyword, setKeyword] = useState("")
+    const [searched, setSearch] = useState(false)
     const handleSubmit = (e) => {
         e.preventDefault();
         setKeyword(inputValue);
         setInputValue("");
+        setSearch(true);
     }
     const [filterTypeOptions, setfilterTypeOptions] = useState("model")
     const handleChange = (e) => {
@@ -50,10 +52,10 @@ export default function Search() {
                 <option value="operatingSystem">operatingSystem</option>
                 <option value="behaviorClass">behaviorClass</option>
             </select>
-            <p2>dropbox value is {filterTypeOptions}</p2>
+            {/* <p2>dropbox value is {filterTypeOptions}</p2> */}
             {/* <Dropdown />
             <SearchForm /> */}
-            <DataFetcher filterTypeOptions={filterTypeOptions} keyword={keyword} />
+            <DataFetcher filterTypeOptions={filterTypeOptions} keyword={keyword} searched={searched} />
 
 
 

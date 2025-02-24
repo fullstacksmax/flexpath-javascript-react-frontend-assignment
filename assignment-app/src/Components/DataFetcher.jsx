@@ -11,7 +11,7 @@ import { useSearchParams } from 'react-router-dom';
 import { BrowserRouter } from "react-router-dom";
 
 
-export default function DataFetcher({keyword, filterTypeOptions }) {
+export default function DataFetcher({keyword, filterTypeOptions, searched}) {
         const [data, setData] = useState(null);
         const [loading, setLoading] = useState(false)
         const [error, setError] = useState(false)
@@ -51,13 +51,13 @@ export default function DataFetcher({keyword, filterTypeOptions }) {
 
         if (loading) return <div>Loading...</div>;
         if (error) return <div>{error}</div>;
+        if (!searched) return null;
         if (!data) return null;
 
        console.log(data)
          
         return(
-            <div>
-            datafetcher 
+            <div> 
             <h2>submitted value {keyword}</h2> 
             <h3>dropvalue is {filterTypeOptions}</h3>
              <DataStats data={data}/>
