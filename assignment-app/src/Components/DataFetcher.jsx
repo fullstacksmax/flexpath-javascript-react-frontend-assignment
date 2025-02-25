@@ -9,6 +9,8 @@ import Search from './Search';
 import DataStats from './DataStats';
 import { useSearchParams } from 'react-router-dom';
 import { BrowserRouter } from "react-router-dom";
+import Tabulated from "./Tabulated"
+import DataStatsTwo from "./DataStatsTwo"
 
 
 export default function DataFetcher({keyword, filterTypeOptions, searched}) {
@@ -28,7 +30,7 @@ export default function DataFetcher({keyword, filterTypeOptions, searched}) {
                     'keyword': keyword
                 });
                 const url = `/api/data/search/?${params.toString()}`
-                console.log("the url is ", url)
+                //console.log("the url is ", url)
 
             const response = await fetch(url)
            // console.log(params.toString())
@@ -60,7 +62,10 @@ export default function DataFetcher({keyword, filterTypeOptions, searched}) {
             <div> 
             <h2>submitted value {keyword}</h2> 
             <h3>dropvalue is {filterTypeOptions}</h3>
-             <DataStats data={data}/>
+             {/*<DataStats data={data}/>*/}
+             <DataStatsTwo data={data}/>
+             
+
              </div>
         )
         

@@ -1,23 +1,35 @@
 import { useEffect, useState } from "react"
+import Median from "./Median"
+import Tabulated from "./Tabulated"
 
 
 
 
 export default function DataStats({data}) {
     const [count, setCount] = useState("")
+    const userId = []
+    const deviceModel = []
+    const operatingSystem = []
     const appUsage = []
     const screenTime = []
+    const batteryDrain = []
     const installedApps = []
+    const dataUsage = []
     const age = []
-    let medAge
-    let medInstalledApps
-    let medScreenTime
-    let medAppUsage
+    const gender = []
+    const behaviorClass = []
+
     
 
     data.forEach(e => {
         age.push(Number(e.Age))
-        
+        userId.push(Number(e["User ID"]))
+        deviceModel.push(e["Device Model"])
+        operatingSystem.push(e["Operating System"])
+        batteryDrain.push(e["Battery Drain (mAh/day)"])
+        dataUsage.push(e["Data Usage (MB/day)"])
+        gender.push(e.Gender)
+        behaviorClass.push(e["User Behavior Class"])
         installedApps.push(Number(e["Number of Apps Installed"]))
         screenTime.push(Number(e["Screen On Time (hours/day)"]))
         appUsage.push(Number(e["App Usage Time (min/day)"]))
@@ -27,24 +39,7 @@ export default function DataStats({data}) {
     let avgInstalledApps = installedApps.reduce((acc, v) => acc + v, 0) / installedApps.length;
     let avgScreenTime = screenTime.reduce((acc, v) => acc + v, 0) / screenTime.length;
     let avgAppUsage = appUsage.reduce((acc, v) => acc + v, 0) / appUsage.length;
-    age.sort()
-    installedApps.sort()
-    screenTime.sort()
-    appUsage.sort()
-
-    if(count % 2 === 0){
-         medAge = (age[count/2] + age[(count/2) + 1]) / 2
-         medInstalledApps = (installedApps[count/2] + installedApps[(count/2) + 1]) / 2
-         medScreenTime = (screenTime[count/2] + screenTime[(count/2) + 1]) / 2
-         medAppUsage = (appUsage[count/2] + appUsage[(count/2) + 1]) / 2
-    }
-
-    if(count % 2 === 1) {
-         medAge = age[(count/2) + 1]
-         medInstalledApps = installedApps[(count/2) + 1] 
-         medScreenTime = screenTime[(count/2) + 1] 
-         medAppUsage = appUsage[(count/2) + 1]
-    }
+    
 
     useEffect(() => {
         setCount(data.length);
@@ -66,7 +61,7 @@ export default function DataStats({data}) {
     
     return (
         <div>
-            data stats
+ data stats
             <br></br>
             count {count}
             <br></br>
@@ -78,13 +73,20 @@ export default function DataStats({data}) {
             <br></br>
             avg app usage {avgAppUsage}
             <br></br>
-            med age {medAge}
+           {/*  med age {medAge}
             <br></br>
             med installed apps {medInstalledApps}
             <br></br>
             med screentime {medScreenTime}
             <br></br>
-            med app usage {medAppUsage}
+            med app usage {medAppUsage} */}
+            {/* <Median age={age} installedApps={installedApps} 
+            screenTime={screenTime} appUsage={appUsage} /> */}
+        <Tabulated userId={userId} deviceModel={deviceModel} operatingSystem={operatingSystem} appUsage={appUsage}
+        screenTime={screenTime} batteryDrain={batteryDrain} installedApps={installedApps} dataUsage={dataUsage}
+        age={age} gender={gender} behaviorClass={behaviorClass} />
+            
+   
 
             
             
