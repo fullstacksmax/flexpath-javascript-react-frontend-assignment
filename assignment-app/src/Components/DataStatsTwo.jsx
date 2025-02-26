@@ -5,7 +5,7 @@ import Tabulated from "./Tabulated"
 
 
 
-export default function DataStats({data}) {
+export default function DataStats({data, keyword}) {
     const [count, setCount] = useState("")
     const userId = []
     const deviceModel = []
@@ -84,7 +84,7 @@ export default function DataStats({data}) {
             screenTime={screenTime} appUsage={appUsage} /> */}
         <Tabulated userId={userId} deviceModel={deviceModel} operatingSystem={operatingSystem} appUsage={appUsage}
         screenTime={screenTime} batteryDrain={batteryDrain} installedApps={installedApps} dataUsage={dataUsage}
-        age={age} gender={gender} behaviorClass={behaviorClass} />
+        age={age} gender={gender} behaviorClass={behaviorClass} data={data} keyword={keyword} />
             
    
 

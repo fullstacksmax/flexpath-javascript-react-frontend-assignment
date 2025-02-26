@@ -63,7 +63,7 @@ export default function DataFetcher({keyword, filterTypeOptions, searched}) {
             <h2>submitted value {keyword}</h2> 
             <h3>dropvalue is {filterTypeOptions}</h3>
              {/*<DataStats data={data}/>*/}
-             <DataStatsTwo data={data}/>
+             <DataStatsTwo data={data} keyword={keyword}/>
              
 
              </div>

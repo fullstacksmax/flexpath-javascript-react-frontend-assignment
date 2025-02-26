@@ -17,7 +17,6 @@ export default function DataStats({data}) {
 
     data.forEach(e => {
         age.push(Number(e.Age))
-        
         installedApps.push(Number(e["Number of Apps Installed"]))
         screenTime.push(Number(e["Screen On Time (hours/day)"]))
         appUsage.push(Number(e["App Usage Time (min/day)"]))

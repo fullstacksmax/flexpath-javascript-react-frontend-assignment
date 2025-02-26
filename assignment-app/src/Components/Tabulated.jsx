@@ -1,4 +1,6 @@
 import React from 'react'
+import TableRows from "./TableRows"
+import { useState, useEffect } from 'react';
 
 
 
@@ -6,12 +8,37 @@ import React from 'react'
 
 
 
-export default function Tabulated({userId, deviceModel, operatingSystem, appUsage, screenTime, batteryDrain, installedApps, dataUsage, age, gender, behaviorClass  }) {
-    console.log(userId)
+export default function Tabulated({userId, deviceModel, operatingSystem, appUsage, screenTime, batteryDrain, installedApps, dataUsage, age, gender, behaviorClass, data , keyword  }) {
+    //console.log(userId)
 
+        const test = 'test'
+        const [tableRows, setRows] = useState([])
+        const table = document.getElementById('mytable')
+        useEffect(() => {
+            const makeRows = () => {
+                //console.log(rows)
+
+                ///change this to 2x data.map
+                for (let item of data) {
+                    rows += `<tr>`
+                    //console.log(data[item])
+                    for (let key in item) {
+                        //console.log(item[key])
+                        rows += `<td> ${item[key]} </td>`
+                    }
+                    rows += `</tr>`
+                }
+                setRows(rows)
+            }
+            makeRows();
+            //console.log('makerows test')
+            //console.log(rows)
+        }, [data, keyword])
+        console.log(tableRows)
+        
     return(
         <body>
-        <table class ="table table-striped">
+        <table name="mytable" class ="table table-striped">
             <th scope="col" data-field={userId}>User ID</th>
             <th scope="col" data-field={deviceModel}>Device Model</th>
             <th scope="col" data-field={operatingSystem}>Operating System</th>
@@ -23,12 +50,22 @@ export default function Tabulated({userId, deviceModel, operatingSystem, appUsag
             <th scope="col" data-field={age}>Age</th>
             <th scope="col" data-field={gender}>Gender</th>
             <th scope="col" data-field={behaviorClass}>User Behavior Class</th>
+            
+            
+            
+            
 
+        
         </table>
+        
+        
         </body>
     )
 }
 
+
+{/*             <tr><td> 1 </td><td> Google Pixel 5 </td><td> Android </td><td> 393 </td><td> 6.4 </td><td> 1872 </td><td> 67 </td><td> 1122 </td><td> 40 </td><td> Male </td><td> 4 </td></tr>
+ */}            {/* <TableRows data={data} keyword={keyword} /> */}
 
 /**
  * 0
