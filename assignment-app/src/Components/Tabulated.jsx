@@ -13,21 +13,16 @@ export default function Tabulated({userId, deviceModel, operatingSystem, appUsag
 
         const test = 'test'
         const [tableRows, setRows] = useState([])
-        const table = document.getElementById('mytable')
+
         useEffect(() => {
             const makeRows = () => {
-                //console.log(rows)
-
-                ///change this to 2x data.map
-                for (let item of data) {
-                    rows += `<tr>`
-                    //console.log(data[item])
-                    for (let key in item) {
-                        //console.log(item[key])
-                        rows += `<td> ${item[key]} </td>`
-                    }
-                    rows += `</tr>`
-                }
+                const rows = data.map((items, index) => (
+                    <tr key={index}>
+                        {Object.values(items).map((item,idx) => (
+                            <td key={idx}>{item}</td>
+                        ))}
+                    </tr>
+                ))
                 setRows(rows)
             }
             makeRows();
@@ -50,6 +45,7 @@ export default function Tabulated({userId, deviceModel, operatingSystem, appUsag
             <th scope="col" data-field={age}>Age</th>
             <th scope="col" data-field={gender}>Gender</th>
             <th scope="col" data-field={behaviorClass}>User Behavior Class</th>
+            {tableRows}
             
             
             
