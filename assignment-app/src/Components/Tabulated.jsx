@@ -8,13 +8,25 @@ import { useState, useEffect } from 'react';
 
 
 
-export default function Tabulated({userId, deviceModel, operatingSystem, appUsage, screenTime, batteryDrain, installedApps, dataUsage, age, gender, behaviorClass, data , keyword  }) {
+export default function Tabulated({ data , keyword  }) {
     //console.log(userId)
 
         const test = 'test'
         const [tableRows, setRows] = useState([])
+        const [tableHeader, setHeader] = useState([])
 
         useEffect(() => {
+            const makeHeader = () => {
+                const makeHeader = () => {
+                    const header = Object.keys(data[0]).map((item, index) => (
+                        <th scope="col" data-field={index}>{item}</th>
+                    ))
+                    setHeader(header)
+                }
+                makeHeader()
+                    
+
+            }
             const makeRows = () => {
                 const rows = data.map((items, index) => (
                     <tr key={index}>
@@ -26,6 +38,7 @@ export default function Tabulated({userId, deviceModel, operatingSystem, appUsag
                 setRows(rows)
             }
             makeRows();
+            makeHeader();
             //console.log('makerows test')
             //console.log(rows)
         }, [data, keyword])
@@ -34,24 +47,9 @@ export default function Tabulated({userId, deviceModel, operatingSystem, appUsag
     return(
         <body>
         <table name="mytable" class ="table table-striped">
-            <th scope="col" data-field={userId}>User ID</th>
-            <th scope="col" data-field={deviceModel}>Device Model</th>
-            <th scope="col" data-field={operatingSystem}>Operating System</th>
-            <th scope="col" data-field={appUsage}>App Usage Time (min/day)</th>
-            <th scope="col" data-field={screenTime}>Screen On Time (hours/day)</th>
-            <th scope="col" data-field={batteryDrain}>Battery Drain (mAh/day)</th>
-            <th scope="col" data-field={installedApps}>Number of Apps Installed</th>
-            <th scope="col" data-field={dataUsage}>Data usage (MB/day)</th>
-            <th scope="col" data-field={age}>Age</th>
-            <th scope="col" data-field={gender}>Gender</th>
-            <th scope="col" data-field={behaviorClass}>User Behavior Class</th>
-            {tableRows}
-            
-            
-            
-            
+            {tableHeader}
+            {tableRows}        
 
-        
         </table>
         
         

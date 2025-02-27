@@ -82,9 +82,7 @@ export default function DataStats({data, keyword}) {
             med app usage {medAppUsage} */}
             {/* <Median age={age} installedApps={installedApps} 
             screenTime={screenTime} appUsage={appUsage} /> */}
-        <Tabulated userId={userId} deviceModel={deviceModel} operatingSystem={operatingSystem} appUsage={appUsage}
-        screenTime={screenTime} batteryDrain={batteryDrain} installedApps={installedApps} dataUsage={dataUsage}
-        age={age} gender={gender} behaviorClass={behaviorClass} data={data} keyword={keyword} />
+        <Tabulated data={data} keyword={keyword} />
             
    
 
