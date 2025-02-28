@@ -1,11 +1,13 @@
-import React from 'react'
+import React, { useContext, useEffect }from 'react'
+import SearchContextProvider, { SearchContext } from './Context'
 
 
 
 
 
 export default function Home() {
-    
+    const {searchContext, setSearchContext} = useContext(SearchContext)
+    console.log("from home.jsx search context" ,searchContext)
     
     
     return(

@@ -1,9 +1,10 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import Dropdown from './Dropdown'
 import SearchForm from './SearchForm'
 import DataFetcher from './DataFetcher'
 import Results from './Results'
 import { useState } from 'react'
+import SearchContextProvider, { SearchContext } from './Context'
 
 
 
@@ -11,14 +12,18 @@ import { useState } from 'react'
 
 
 export default function Search() {
+    const {searchContext, setSearchContext} = useContext(SearchContext)
     const [inputValue, setInputValue] = useState("")
     const [keyword, setKeyword] = useState("")
     const [searched, setSearch] = useState(false)
+    
+    console.log("from search.jsx search context" ,searchContext)
     const handleSubmit = (e) => {
         e.preventDefault();
         setKeyword(inputValue);
         setInputValue("");
         setSearch(true);
+        setSearchContext(inputValue);
     }
     const [filterTypeOptions, setfilterTypeOptions] = useState("model")
     const handleChange = (e) => {
@@ -55,7 +60,9 @@ export default function Search() {
             {/* <p2>dropbox value is {filterTypeOptions}</p2> */}
             {/* <Dropdown />
             <SearchForm /> */}
-            <DataFetcher filterTypeOptions={filterTypeOptions} keyword={keyword} searched={searched} />
+            
+            <DataFetcher filterTypeOptions={filterTypeOptions} keyword={keyword} searched={searched}  />
+            
 
 
 

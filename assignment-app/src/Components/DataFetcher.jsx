@@ -2,7 +2,7 @@
 
 
 import React from 'react'
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext, memo } from 'react';
 import SearchForm from './SearchForm';
 import Dropdown from './Dropdown'; 
 import Search from './Search';
@@ -11,12 +11,16 @@ import { useSearchParams } from 'react-router-dom';
 import { BrowserRouter } from "react-router-dom";
 import Tabulated from "./Tabulated"
 import DataStatsTwo from "./DataStatsTwo"
+import SearchContextProvider, { SearchContext } from './Context'
 
 
-export default function DataFetcher({keyword, filterTypeOptions, searched}) {
+const DataFetcher = memo(function DataFetcher({keyword, filterTypeOptions, searched}) {
+        const {searchContext, setSearchContext} = useContext(SearchContext)      
         const [data, setData] = useState(null);
         const [loading, setLoading] = useState(false)
         const [error, setError] = useState(false)
+        console.log("from datafetcher.jsx search context" ,searchContext)
+        
         
         
         useEffect(() => {
@@ -38,6 +42,7 @@ export default function DataFetcher({keyword, filterTypeOptions, searched}) {
           //  console.log(params.get('keyword'))
             
             const json = await response.json();
+            
             setData(json);
             if(!response.ok){
               throw new Error("network response not ok")
@@ -46,6 +51,7 @@ export default function DataFetcher({keyword, filterTypeOptions, searched}) {
                 setError(error.message)
             }
             setLoading(false)
+            
           };
           fetchData();  
         }, [keyword]);
@@ -57,6 +63,8 @@ export default function DataFetcher({keyword, filterTypeOptions, searched}) {
         if (!data) return null;
 
        console.log(data)
+
+       
          
         return(
             <div> 
@@ -70,9 +78,10 @@ export default function DataFetcher({keyword, filterTypeOptions, searched}) {
         )
         
     }
+  )
 
 
-
+export default DataFetcher
     
 /*
 1: 

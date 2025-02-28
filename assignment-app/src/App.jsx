@@ -1,24 +1,17 @@
-import React from "react";
+import React, {useContext, useEffect} from "react";
 import {Routes, Route, Link} from 'react-router-dom'
 import Home from "./Components/Home";
 import Search from './Components/Search'
+import SearchContextProvider , { SearchContext } from "./Components/Context";
+import Layout from "./Components/LayoutRoutes";
 
 function App() {
+  
   return (
     <div>
-      <nav className="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
-        {/* <p> tag is a placeholder, You'll need to change the tag/component type later*/}
-        <a className="navbar-brand ms-4 nav-link">User Behavior Data </a>
-        <Link className="navbar-brand ms-4 nav-link" to='/'>Home</Link>
-        <Link className="navbar-brand ms-4 nav-link" to='search'>Search</Link>      
-        
-        
-      </nav>
-      <hr />
-      <Routes>
-       <Route path='/' element={<Home />} />
-       <Route path='search' element={<Search />} />
-      </Routes>
+      <SearchContextProvider>
+      <Layout />
+      </SearchContextProvider>
       
       
     </div>
