@@ -5,25 +5,29 @@ import DataFetcher from './DataFetcher'
 import Results from './Results'
 import { useState } from 'react'
 import SearchContextProvider, { SearchContext } from './Context'
-
+import Tabulated from "./Tabulated"
 
 
 
 
 
 export default function Search() {
-    const {searchContext, setSearchContext} = useContext(SearchContext)
+    const {searchContext, setSearchContext, dataContext, setDataContext} = useContext(SearchContext)
     const [inputValue, setInputValue] = useState("")
     const [keyword, setKeyword] = useState("")
     const [searched, setSearch] = useState(false)
     
-    console.log("from search.jsx search context" ,searchContext)
+    //console.log("from search.jsx search context" ,searchContext)
+    //console.log("from search.jsx data context", dataContext)
+    //console.log("from search.jsx search context" ,searchContext)
+
     const handleSubmit = (e) => {
         e.preventDefault();
         setKeyword(inputValue);
+        setSearchContext(inputValue);
         setInputValue("");
         setSearch(true);
-        setSearchContext(inputValue);
+        
     }
     const [filterTypeOptions, setfilterTypeOptions] = useState("model")
     const handleChange = (e) => {
@@ -62,6 +66,7 @@ export default function Search() {
             <SearchForm /> */}
             
             <DataFetcher filterTypeOptions={filterTypeOptions} keyword={keyword} searched={searched}  />
+            <Tabulated keyword={keyword}/>
             
 
 

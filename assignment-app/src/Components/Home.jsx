@@ -6,7 +6,9 @@ import SearchContextProvider, { SearchContext } from './Context'
 
 
 export default function Home() {
-    const {searchContext, setSearchContext} = useContext(SearchContext)
+    const {searchContext, setSearchContext, dataContext, setDataContext} = useContext(SearchContext)
+    console.log("from home.jsx search context" ,searchContext)
+    console.log(dataContext === null)
     console.log("from home.jsx search context" ,searchContext)
     
     

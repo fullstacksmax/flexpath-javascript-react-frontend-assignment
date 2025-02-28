@@ -1,6 +1,7 @@
 import React from 'react'
 import TableRows from "./TableRows"
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
+import SearchContextProvider, { SearchContext } from './Context'
 
 
 
@@ -8,46 +9,48 @@ import { useState, useEffect } from 'react';
 
 
 
-export default function Tabulated({ data , keyword  }) {
+export default function Tabulated( { keyword  }  ) {
     //console.log(userId)
-
-        const test = 'test'
-        const [tableRows, setRows] = useState([])
-        const [tableHeader, setHeader] = useState([])
-
+        const {searchContext, dataContext, setDataContext} = useContext(SearchContext)
+        const [tableRows, setTableRows] = useState([])
+        //const [tableHeader, setHeader] = useState([])
+        console.log('tabulated.jsx start' , dataContext)
         useEffect(() => {
-            const makeHeader = () => {
-                const makeHeader = () => {
-                    const header = Object.keys(data[0]).map((item, index) => (
-                        <th scope="col" data-field={index}>{item}</th>
-                    ))
-                    setHeader(header)
-                }
-                makeHeader()
-                    
-
-            }
+            console.log('tabulated useeffect hook start')
             const makeRows = () => {
-                const rows = data.map((items, index) => (
+                const rows = dataContext.map((items, index) => (
                     <tr key={index}>
                         {Object.values(items).map((item,idx) => (
                             <td key={idx}>{item}</td>
                         ))}
                     </tr>
                 ))
-                setRows(rows)
-            }
-            makeRows();
-            makeHeader();
+                console.log('tabulated useeffect hook end', dataContext)
+                setTableRows(rows)
+            
+        }
+        console.log('tabulated render')
+        if(dataContext != null) makeRows();
+            
             //console.log('makerows test')
             //console.log(rows)
-        }, [data, keyword])
-        console.log(tableRows)
+        }, [dataContext, keyword])
+        //console.log(tableRows)
         
     return(
         <body>
         <table name="mytable" class ="table table-striped">
-            {tableHeader}
+            <th scope="col" >User ID</th>
+            <th scope="col" >Device Model</th>
+            <th scope="col" >Operating System</th>
+            <th scope="col" >App Usage Time (min/day)</th>
+            <th scope="col" >Screen On Time (hours/day)</th>
+            <th scope="col" >Battery Drain (mAh/day)</th>
+            <th scope="col" >Number of Apps Installed</th>
+            <th scope="col" >Data usage (MB/day)</th>
+            <th scope="col" >Age</th>
+            <th scope="col" >Gender</th>
+            <th scope="col" >User Behavior Class</th>
             {tableRows}        
 
         </table>

@@ -15,11 +15,11 @@ import SearchContextProvider, { SearchContext } from './Context'
 
 
 const DataFetcher = memo(function DataFetcher({keyword, filterTypeOptions, searched}) {
-        const {searchContext, setSearchContext} = useContext(SearchContext)      
+        const {searchContext, setSearchContext, dataContext, setDataContext} = useContext(SearchContext)      
         const [data, setData] = useState(null);
         const [loading, setLoading] = useState(false)
         const [error, setError] = useState(false)
-        console.log("from datafetcher.jsx search context" ,searchContext)
+        //console.log("from datafetcher.jsx search context" ,searchContext)
         
         
         
@@ -31,7 +31,7 @@ const DataFetcher = memo(function DataFetcher({keyword, filterTypeOptions, searc
                 //console.log(filterTypeOptions)
                 const params = new URLSearchParams({
                     'filterType': filterTypeOptions,
-                    'keyword': keyword
+                    'keyword': searchContext
                 });
                 const url = `/api/data/search/?${params.toString()}`
                 //console.log("the url is ", url)
@@ -44,6 +44,7 @@ const DataFetcher = memo(function DataFetcher({keyword, filterTypeOptions, searc
             const json = await response.json();
             
             setData(json);
+            setDataContext(json);
             if(!response.ok){
               throw new Error("network response not ok")
             }
@@ -53,8 +54,8 @@ const DataFetcher = memo(function DataFetcher({keyword, filterTypeOptions, searc
             setLoading(false)
             
           };
-          fetchData();  
-        }, [keyword]);
+          if(searchContext != null) fetchData();  
+        }, [searchContext]);
         
 
         if (loading) return <div>Loading...</div>;
@@ -71,7 +72,8 @@ const DataFetcher = memo(function DataFetcher({keyword, filterTypeOptions, searc
             <h2>submitted value {keyword}</h2> 
             <h3>dropvalue is {filterTypeOptions}</h3>
              {/*<DataStats data={data}/>*/}
-             <DataStatsTwo data={data} keyword={keyword}/>
+             <DataStatsTwo data={data}/>
+             
              
 
              </div>

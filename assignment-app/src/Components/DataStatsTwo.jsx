@@ -5,7 +5,7 @@ import Tabulated from "./Tabulated"
 
 
 
-export default function DataStats({data, keyword}) {
+export default function DataStats({data}) {
     const [count, setCount] = useState("")
     const userId = []
     const deviceModel = []
@@ -43,7 +43,7 @@ export default function DataStats({data, keyword}) {
 
     useEffect(() => {
         setCount(data.length);
-        console.log('data stats useeffect hook')
+        //console.log('data stats useeffect hook')
          
         
         
@@ -82,7 +82,7 @@ export default function DataStats({data, keyword}) {
             med app usage {medAppUsage} */}
             {/* <Median age={age} installedApps={installedApps} 
             screenTime={screenTime} appUsage={appUsage} /> */}
-        <Tabulated data={data} keyword={keyword} />
+        
             
    
 
