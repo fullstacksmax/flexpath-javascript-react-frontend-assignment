@@ -14,9 +14,9 @@ export default function Tabulated( { keyword  }  ) {
         const {searchContext, dataContext, setDataContext} = useContext(SearchContext)
         const [tableRows, setTableRows] = useState([])
         //const [tableHeader, setHeader] = useState([])
-        console.log('tabulated.jsx start' , dataContext)
+        //console.log('tabulated.jsx start' , dataContext)
         useEffect(() => {
-            console.log('tabulated useeffect hook start')
+            //console.log('tabulated useeffect hook start')
             const makeRows = () => {
                 const rows = dataContext.map((items, index) => (
                     <tr key={index}>
@@ -25,11 +25,11 @@ export default function Tabulated( { keyword  }  ) {
                         ))}
                     </tr>
                 ))
-                console.log('tabulated useeffect hook end', dataContext)
+                //console.log('tabulated useeffect hook end', dataContext)
                 setTableRows(rows)
             
         }
-        console.log('tabulated render')
+        //console.log('tabulated render')
         if(dataContext != null) makeRows();
             
             //console.log('makerows test')
@@ -61,43 +61,4 @@ export default function Tabulated( { keyword  }  ) {
 }
 
 
-{/*             <tr><td> 1 </td><td> Google Pixel 5 </td><td> Android </td><td> 393 </td><td> 6.4 </td><td> 1872 </td><td> 67 </td><td> 1122 </td><td> 40 </td><td> Male </td><td> 4 </td></tr>
- */}            {/* <TableRows data={data} keyword={keyword} /> */}
-
-/**
- * 0
-: 
-Age
-: 
-"40"
-App Usage Time (min/day)
-: 
-"393"
-Battery Drain (mAh/day)
-: 
-"1872"
-Data Usage (MB/day)
-: 
-"1122"
-Device Model
-: 
-"Google Pixel 5"
-Gender
-: 
-"Male"
-Number of Apps Installed
-: 
-"67"
-Operating System
-: 
-"Android"
-Screen On Time (hours/day)
-: 
-"6.4"
-User Behavior Class
-: 
-"4"
-User ID
-: 
-"1"
- */
+ 

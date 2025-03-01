@@ -1,27 +1,24 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState, useContext } from "react"
 import Median from "./Median"
 import Tabulated from "./Tabulated"
+import SearchContextProvider, { SearchContext } from './Context'
 
 
 
 
-export default function DataStats({data}) {
+export default function DataStats() {
+    const {searchContext, dataContext, setDataContext} = useContext(SearchContext)
     const [count, setCount] = useState("")
-    const userId = []
-    const deviceModel = []
-    const operatingSystem = []
-    const appUsage = []
+    const appUsage = [] //[0]
     const screenTime = []
-    const batteryDrain = []
     const installedApps = []
-    const dataUsage = []
     const age = []
-    const gender = []
-    const behaviorClass = []
+
 
     
 
-    data.forEach(e => {
+    /* dataContext.forEach(e => {
+        console.log("test")
         age.push(Number(e.Age))
         userId.push(Number(e["User ID"]))
         deviceModel.push(e["Device Model"])
@@ -33,21 +30,16 @@ export default function DataStats({data}) {
         installedApps.push(Number(e["Number of Apps Installed"]))
         screenTime.push(Number(e["Screen On Time (hours/day)"]))
         appUsage.push(Number(e["App Usage Time (min/day)"]))
-    });
+    }); */
     
-    let avgAge = age.reduce((acc, v) => acc + v, 0) / age.length;
-    let avgInstalledApps = installedApps.reduce((acc, v) => acc + v, 0) / installedApps.length;
-    let avgScreenTime = screenTime.reduce((acc, v) => acc + v, 0) / screenTime.length;
-    let avgAppUsage = appUsage.reduce((acc, v) => acc + v, 0) / appUsage.length;
     
-
-    useEffect(() => {
-        setCount(data.length);
-        //console.log('data stats useeffect hook')
-         
-        
-        
-    },[data])
+    
+    if(dataContext) {
+        console.log("avgstats")
+        dataContext.map((item, index) => {
+            console.log(item)
+        })
+}
     
     
     /* console.log(`age is `, age)
@@ -56,13 +48,14 @@ export default function DataStats({data}) {
     console.log(`appusage `, appUsage)
     console.log(`screentime `, screenTime)
     console.log(`installedapps  `, installedApps) */
-
+    
     
     
     return (
         <div>
  data stats
-            <br></br>
+           {/*  <br></br>
+            test
             count {count}
             <br></br>
             avg age {avgAge}
@@ -72,7 +65,7 @@ export default function DataStats({data}) {
             avg screentime {avgScreenTime}
             <br></br>
             avg app usage {avgAppUsage}
-            <br></br>
+            <br></br> */}
            {/*  med age {medAge}
             <br></br>
             med installed apps {medInstalledApps}

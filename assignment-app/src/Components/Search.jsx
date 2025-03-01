@@ -6,6 +6,7 @@ import Results from './Results'
 import { useState } from 'react'
 import SearchContextProvider, { SearchContext } from './Context'
 import Tabulated from "./Tabulated"
+import Median from './Median'
 
 
 
@@ -50,9 +51,6 @@ export default function Search() {
                 <br></br>
                 <button type='submit'>Search</button>
             </form>
-            <p> search keyword was {keyword}</p>
-            search page
-
             <br></br>
             <p1>Select data point to filter search by</p1>
             <select className="form-select" aria-label="Default select example" onChange={handleChange}>
@@ -67,6 +65,7 @@ export default function Search() {
             
             <DataFetcher filterTypeOptions={filterTypeOptions} keyword={keyword} searched={searched}  />
             <Tabulated keyword={keyword}/>
+            
             
 
 

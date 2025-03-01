@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
+import SearchContextProvider, { SearchContext } from './Context'
 
 
 
 export default function Median({installedApps, screenTime, appUsage, age}){
+    const {searchContext, setSearchContext, dataContext, setDataContext} = useContext(SearchContext)
     const [medAge, setMedAge] = useState("N/A")
     const [medInstalledApps, setMedInstalledApps] = useState("N/A")
     const [medScreenTime, setMedScreenTime ] = useState("N/A")
@@ -13,7 +15,7 @@ export default function Median({installedApps, screenTime, appUsage, age}){
     installedApps.sort()
     screenTime.sort()
     appUsage.sort()
-    },[installedApps, screenTime, appUsage, age])
+    },[searchContext])
 
     if(count % 2 === 0){
         setMedAge((age[count/2] + age[(count/2) + 1]) / 2)

@@ -63,7 +63,7 @@ const DataFetcher = memo(function DataFetcher({keyword, filterTypeOptions, searc
         if (!searched) return null;
         if (!data) return null;
 
-       console.log(data)
+       //console.log(data)
 
        
          
@@ -72,7 +72,7 @@ const DataFetcher = memo(function DataFetcher({keyword, filterTypeOptions, searc
             <h2>submitted value {keyword}</h2> 
             <h3>dropvalue is {filterTypeOptions}</h3>
              {/*<DataStats data={data}/>*/}
-             <DataStatsTwo data={data}/>
+             <DataStats  />
              
              
 
