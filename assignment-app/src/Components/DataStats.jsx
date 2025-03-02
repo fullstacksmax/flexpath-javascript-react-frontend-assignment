@@ -1,9 +1,10 @@
-import { useEffect, useState, useContext } from "react"
+import { useEffect, useState, useContext, memo } from "react"
 import SearchContextProvider, { SearchContext } from './Context'
+import Cards from "./Cards"
 
 
 
-export default function DataStats() {
+const DataStats = function DataStats({keyword}) {
     const {searchContext, dataContext, setDataContext} = useContext(SearchContext)
     const [count, setCount] = useState("")
     const [data, setData] = useState([])
@@ -15,13 +16,16 @@ export default function DataStats() {
     const [medInstalledApps, setMedInstalledApps ] = useState("")
     const [medScreenTime, setMedScreenTime ] = useState("")
     const [medAppUsage, setMedAppUsage ] = useState("")
-    const appUsage = []
-    const screenTime = []
-    const installedApps = []
-    const age = []
+
+    const [appUsageArr, setAppUsageArr] = useState([])
+    const [screenTimeArr, setScreenTimeArr] = useState([])
+    const [installedAppsArr, setInstalledAppsArr] = useState([])
+    const [ageArr, setAgeArr] = useState([])
     
-    console.log('data stats start', data)
-    console.log('data stats start datacontext', dataContext)
+
+    
+    //console.log('data stats start', data)
+    //console.log('data stats start datacontext', dataContext)
 
     if(!dataContext) {
        return null
@@ -35,59 +39,101 @@ export default function DataStats() {
     
 
     useEffect(() => {
-        console.log('useeffect hook start', data)
-        setData(dataContext)
-        setCount(dataContext.length)
+    const age = []
+    const installedApps = []
+    const screenTime = []
+    const appUsage = []
+    setCount(dataContext.length)
+    setData(dataContext)
+    setCount(dataContext.length)
+        /* console.log('useeffect hook count 2', count)
+        console.log(count)
         console.log('useeffect hook prior to declaration', data)
-        console.log('useeffect hook prior to declaration datacontext', dataContext)
+        console.log('useeffect hook prior to declaration datacontext', dataContext) */
         const statsPage = () => {
-            console.log('useeffect hook statspage() defined', data)
-            console.log('useeffect hook statspage() defined datacontext', dataContext)
+        
+            /* console.log('useeffect hook statspage() defined', data)
+            console.log('useeffect hook statspage() defined datacontext', dataContext) */
+            //console.log(screenTime)
+            
+            
+            
+            //console.log(screenTime)
+            /* console.log(installedApps)
+            console.log(appUsage)
+            console.log(age)
+            console.log('useeffect hook start', data) */
+            
+/*             console.log('useeffect hook count 1', count) */
+            
+            //console.log(screenTime)
+
+            
+            //console.log(screenTime)
+            
+            setAvgAge((ageArr.reduce((acc, v) => acc + v, 0) / ageArr.length).toFixed((0)));
+            setAvgInstalledApps((installedAppsArr.reduce((acc, v) => acc + v, 0) / installedAppsArr.length).toFixed((0)))
+            setAvgScreenTime((screenTimeArr.reduce((acc, v) => acc + v, 0) / screenTimeArr.length).toFixed((0)));
+            setAvgAppUsage((appUsageArr.reduce((acc, v) => acc + v, 0) / appUsageArr.length).toFixed((0)));
+            //console.log(screenTime)
+            
+        
+            if(count % 2 === 0){
+            //console.log(screenTime)
+            /* console.log(installedApps)
+            console.log(appUsage)
+            console.log(age) */
+                 setMedAge(((ageArr[count/2] + ageArr[(count/2) + 1]) / 2).toFixed(1))
+                 setMedInstalledApps(((installedAppsArr[count/2] + installedAppsArr[(count/2) + 1]) / 2).toFixed(1))
+                 setMedScreenTime(((screenTimeArr[count/2] + screenTimeArr[(count/2) + 1]) / 2).toFixed(1))
+                 setMedAppUsage(((appUsageArr[count/2] + appUsageArr[(count/2) + 1]) / 2).toFixed(1))
+            }
+        
+            else {
+            //console.log(screenTime)
+            /* console.log(installedApps)
+            console.log(appUsage)
+            console.log(age) */
+                 setMedAge((ageArr[(count/2) + 1]).toFixed(1))
+                 setMedInstalledApps((installedAppsArr[(count/2) + 1]).toFixed(1))
+                 setMedScreenTime((screenTimeArr[(count/2) + 1] ).toFixed(1))
+                 setMedAppUsage((appUsageArr[(count/2) + 1]).toFixed(1))
+            }
+            if(dataContext != null)createArrays();
+        }
+        const createArrays = () => {
             dataContext.forEach(e => {
+                
                 age.push(Number(e.Age))
                 installedApps.push(Number(e["Number of Apps Installed"]))
                 screenTime.push(Number(e["Screen On Time (hours/day)"]))
                 appUsage.push(Number(e["App Usage Time (min/day)"]))
-            });
-            
-            console.log(screenTime)
-            console.log(installedApps)
-            console.log(appUsage)
-            console.log(age)
-            setAvgAge(age.reduce((acc, v) => acc + v, 0) / age.length);
-            setAvgInstalledApps(installedApps.reduce((acc, v) => acc + v, 0) / installedApps.length)
-            setAvgScreenTime(screenTime.reduce((acc, v) => acc + v, 0) / screenTime.length);
-            setAvgAppUsage(appUsage.reduce((acc, v) => acc + v, 0) / appUsage.length);
+                
+            })
             age.sort()
             installedApps.sort()
             screenTime.sort()
             appUsage.sort()
-        
-            if(count % 2 === 0){
-                 setMedAge((age[count/2] + age[(count/2) + 1]) / 2)
-                 setMedInstalledApps((installedApps[count/2] + installedApps[(count/2) + 1]) / 2)
-                 setMedScreenTime((screenTime[count/2] + screenTime[(count/2) + 1]) / 2)
-                 setMedAppUsage((appUsage[count/2] + appUsage[(count/2) + 1]) / 2)
-            }
-        
-            if(count % 2 === 1) {
-                 setMedAge(age[(count/2) + 1])
-                setMedInstalledApps(installedApps[(count/2) + 1])
-                 setMedScreenTime(screenTime[(count/2) + 1] )
-                 setMedAppUsage(appUsage[(count/2) + 1])
-            }
-
+            setScreenTimeArr(screenTime)
+            setAppUsageArr(appUsage)
+            setInstalledAppsArr(installedApps)
+            setAgeArr(age)
         }
-        console.log('useeffect prior to call', data)
-        console.log('useeffect prior to call datacontext', dataContext)
-        if(searchContext != null) statsPage();
-        console.log('useeffect post call', data)
-        console.log('useeffect post call datacontext', dataContext)
+        //console.log(screenTime)
+        //console.log('useeffect prior to call', data)
+        //console.log('useeffect prior to call datacontext', dataContext)
         
+        createArrays();
+        statsPage();
+    
+
+        //console.log('useeffect post call', data)
+        //console.log('useeffect post call datacontext', dataContext)
+        //console.log(screenTime)
          
         
         
-    },[searchContext])
+    },[dataContext, count, keyword])
     
     
     /* console.log(`age is `, age)
@@ -97,70 +143,28 @@ export default function DataStats() {
     console.log(`screentime `, screenTime)
     console.log(`installedapps  `, installedApps) */
 
-    
+    if(count === 0) {
+        return <div>
+            <Cards />
+            No Results
+        </div>
+    }
     
     return (
         <div>
-            data stats
             <br></br>
-            count {count}
+        <Cards avgAge={avgAge} avgInstalledApps={avgInstalledApps} avgScreenTime={avgScreenTime} avgAppUsage={avgAppUsage} medAge={medAge}
+        medInstalledApps={medInstalledApps} medScreenTime={medScreenTime} medAppUsage={medAppUsage} count={count} />
             <br></br>
-            avg age {avgAge}
-            <br></br>
-            avg installed apps {avgInstalledApps}
-            <br></br>
-            avg screentime {avgScreenTime}
-            <br></br>
-            avg app usage {avgAppUsage}
-            <br></br>
-            med age {medAge}
-            <br></br>
-            med installed apps {medInstalledApps}
-            <br></br>
-            med screentime {medScreenTime}
-            <br></br>
-            med app usage {medAppUsage}
+            Displaying {count} Results
+            
 
             
             
         </div>
-    )
+    );
 }
 
-/**
- * 0
-: 
-Age
-: 
-"40"
-App Usage Time (min/day)
-: 
-"393"
-Battery Drain (mAh/day)
-: 
-"1872"
-Data Usage (MB/day)
-: 
-"1122"
-Device Model
-: 
-"Google Pixel 5"
-Gender
-: 
-"Male"
-Number of Apps Installed
-: 
-"67"
-Operating System
-: 
-"Android"
-Screen On Time (hours/day)
-: 
-"6.4"
-User Behavior Class
-: 
-"4"
-User ID
-: 
-"1"
- */
+
+export default DataStats
+

@@ -10,11 +10,11 @@ import DataStats from './DataStats';
 import { useSearchParams } from 'react-router-dom';
 import { BrowserRouter } from "react-router-dom";
 import Tabulated from "./Tabulated"
-import DataStatsTwo from "./DataStatsTwo"
+import DataStatsTwo from "./Old/DataStatsTwo"
 import SearchContextProvider, { SearchContext } from './Context'
 
 
-const DataFetcher = memo(function DataFetcher({keyword, filterTypeOptions, searched}) {
+const DataFetcher = function DataFetcher({keyword, filterTypeOptions, searched}) {
         const {searchContext, setSearchContext, dataContext, setDataContext} = useContext(SearchContext)      
         const [data, setData] = useState(null);
         const [loading, setLoading] = useState(false)
@@ -69,10 +69,8 @@ const DataFetcher = memo(function DataFetcher({keyword, filterTypeOptions, searc
          
         return(
             <div> 
-            <h2>submitted value {keyword}</h2> 
-            <h3>dropvalue is {filterTypeOptions}</h3>
              {/*<DataStats data={data}/>*/}
-             <DataStats  />
+             <DataStats  keyword={keyword}/>
              
              
 
@@ -80,7 +78,7 @@ const DataFetcher = memo(function DataFetcher({keyword, filterTypeOptions, searc
         )
         
     }
-  )
+  
 
 
 export default DataFetcher

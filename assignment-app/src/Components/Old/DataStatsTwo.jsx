@@ -1,7 +1,7 @@
 import { useEffect, useState, useContext } from "react"
-import Median from "./Median"
-import Tabulated from "./Tabulated"
-import SearchContextProvider, { SearchContext } from './Context'
+import Median from "../Median"
+import Tabulated from "../Tabulated"
+import SearchContextProvider, { SearchContext } from '../Context'
 
 
 
@@ -34,12 +34,12 @@ export default function DataStats() {
     
     
     
-    if(dataContext) {
+/*     if(dataContext) {
         console.log("avgstats")
         dataContext.map((item, index) => {
             console.log(item)
         })
-}
+} */
     
     
     /* console.log(`age is `, age)

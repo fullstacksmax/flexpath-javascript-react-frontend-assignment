@@ -51,11 +51,8 @@ export default function Tabulated( { keyword  }  ) {
             <th scope="col" >Age</th>
             <th scope="col" >Gender</th>
             <th scope="col" >User Behavior Class</th>
-            {tableRows}        
-
+            <tbody>{tableRows}  </tbody>      
         </table>
-        
-        
         </body>
     )
 }

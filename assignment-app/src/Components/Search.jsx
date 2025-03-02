@@ -7,6 +7,7 @@ import { useState } from 'react'
 import SearchContextProvider, { SearchContext } from './Context'
 import Tabulated from "./Tabulated"
 import Median from './Median'
+import DataStats from './DataStats'
 
 
 
@@ -64,6 +65,7 @@ export default function Search() {
             <SearchForm /> */}
             
             <DataFetcher filterTypeOptions={filterTypeOptions} keyword={keyword} searched={searched}  />
+            
             <Tabulated keyword={keyword}/>
             
             
