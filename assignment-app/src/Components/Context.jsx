@@ -7,7 +7,7 @@ export const SearchContext = createContext("");
 
 export default function SearchContextProvider({ children }) {
     const [searchContext, setSearchContext] = useState(null)
-    const [dataContext, setDataContext] = useState(null)
+    const [dataContext, setDataContext] = useState([])
     const [avgAge, setAvgAge] = useState("")
     const [avgInstalledApps, setAvgInstalledApps] = useState("")
     const [avgScreenTime, setAvgScreenTime] = useState("")
@@ -16,11 +16,13 @@ export default function SearchContextProvider({ children }) {
     const [medInstalledApps, setMedInstalledApps ] = useState("")
     const [medScreenTime, setMedScreenTime ] = useState("")
     const [medAppUsage, setMedAppUsage ] = useState("")
+    const [filterTypeOptionsContext, setfilterTypeOptionsContext] = useState("model")
+    const [cardsContext, setCardsContext] = useState("")
     
 
     return(
         <SearchContext.Provider value={{searchContext, setSearchContext, dataContext, setDataContext, avgAge, setAvgAge, avgInstalledApps, setAvgInstalledApps, avgScreenTime, setAvgScreenTime, avgAppUsage, setAvgAppUsage
-            , medAge, setMedAge, medInstalledApps, setMedInstalledApps, medScreenTime, setMedScreenTime, medAppUsage, setMedAppUsage}}>
+            , medAge, setMedAge, medInstalledApps, setMedInstalledApps, medScreenTime, setMedScreenTime, medAppUsage, setMedAppUsage, filterTypeOptionsContext, setfilterTypeOptionsContext, cardsContext, setCardsContext}}>
             {children}
             </SearchContext.Provider>
     );

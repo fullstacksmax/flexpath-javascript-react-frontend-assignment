@@ -1,13 +1,14 @@
 import React, { useEffect, useContext, useState} from "react"
 import SearchContextProvider, { SearchContext } from './Context'
 export default function Cards({ keyword, count }) {
-    const {searchContext, dataContext, setDataContext , avgAge, avgInstalledApps , avgScreenTime, avgAppUsage , medAge, medInstalledApps, medScreenTime, medAppUsage} = useContext(SearchContext)  
+    const {searchContext, dataContext, setDataContext , avgAge, avgInstalledApps , avgScreenTime, avgAppUsage , medAge, medInstalledApps, medScreenTime, medAppUsage, cardsContext, setCardsContext} = useContext(SearchContext)  
     const [cards, setCards] = useState("")
   useEffect(() => {
     
     const makeCards = () => {
-      if(count === undefined) {
-        setCards(
+      
+      if(dataContext.length === 0 || !dataContext) {
+        setCardsContext(
           <div className="container  ">
           <div className="card-group ">
             <div className="row">
@@ -56,7 +57,8 @@ export default function Cards({ keyword, count }) {
         )
         
     }
-  setCards(
+    else{
+  setCardsContext(
   <div className="container ">
     <div className="card-group">
       <div className="row">
@@ -100,6 +102,7 @@ export default function Cards({ keyword, count }) {
     </div>
   </div>
   )
+}
   
   
   
@@ -109,7 +112,7 @@ makeCards()
 
 return(
   <div>
-  {cards}
+  {cardsContext}
   </div>
 )
 }

@@ -142,22 +142,9 @@ const DataStats = function DataStats({keyword}) {
     console.log(`screentime `, screenTime)
     console.log(`installedapps  `, installedApps) */
 
-    if(count === 0) {
-        return <div>
-            <Cards />
-            No Results
-        </div>
-    }
     
-    return (
-        <div className="mx-5">
-        <Cards count={count} keyword={keyword} />
-            <div className="fs-5 text">
-            <br></br>
-            Displaying {count} Results
-            </div>
-        </div>
-    );
+    
+    
 }
 
 

@@ -14,8 +14,8 @@ import DataStatsTwo from "./Old/DataStatsTwo"
 import SearchContextProvider, { SearchContext } from './Context'
 
 
-const DataFetcher = function DataFetcher({ keyword, filterTypeOptions, searched }) {
-        const {searchContext, setSearchContext, dataContext, setDataContext} = useContext(SearchContext)      
+const DataFetcher = function DataFetcher({ keyword, searched, filterTypeOptions }) {
+        const {searchContext, setSearchContext, dataContext, setDataContext, filterTypeOptionsContext} = useContext(SearchContext)      
         const [data, setData] = useState(null);
         const [loading, setLoading] = useState(false)
         const [error, setError] = useState(false)
@@ -30,7 +30,7 @@ const DataFetcher = function DataFetcher({ keyword, filterTypeOptions, searched 
                 //console.log(keyword)
                 //console.log(filterTypeOptions)
                 const params = new URLSearchParams({
-                    'filterType': filterTypeOptions,
+                    'filterType': filterTypeOptionsContext,
                     'keyword': searchContext
                 });
                 const url = `/api/data/search/?${params.toString()}`

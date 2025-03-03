@@ -2,6 +2,7 @@ import React from 'react'
 import TableRows from "./TableRows"
 import { useState, useEffect, useContext } from 'react';
 import SearchContextProvider, { SearchContext } from './Context'
+import Cards from './Cards';
 
 
 
@@ -9,10 +10,11 @@ import SearchContextProvider, { SearchContext } from './Context'
 
 
 
-export default function Tabulated({ keyword }){
+export default function Tabulated({ keyword, filterTypeOptions }){
         //console.log(userId)
-        const {searchContext, dataContext, setDataContext} = useContext(SearchContext)
+        const {searchContext, dataContext, setDataContext, filterTypeOptionsContext} = useContext(SearchContext)
         const [tableRows, setTableRows] = useState([])
+        const [count, setCount] = useState("")
         //const [tableHeader, setHeader] = useState([])
         //console.log('tabulated.jsx start' , dataContext)
         useEffect(() => {
@@ -27,19 +29,28 @@ export default function Tabulated({ keyword }){
                 ))
                 //console.log('tabulated useeffect hook end', dataContext)
                 setTableRows(rows)
-            
+                if(dataContext.length === 0) {
+                    setCount("No Results")
+                }
+                else{
+                    setCount(`Displaying ${dataContext.length} Results`)
+                }
         }
         //console.log('tabulated render')
         if(dataContext != null) makeRows();
             
             //console.log('makerows test')
             //console.log(rows)
-        }, [dataContext, keyword])
+        }, [dataContext, keyword, filterTypeOptions])
         //console.log(tableRows)
         
     return(
+        <div>
+            <Cards />
+        
         <div className="container">
         <div className='m-1' >
+            <div>{count}</div>
         <table className="table table-striped mx-auto " >
             <thead>
                 <tr>
@@ -58,6 +69,7 @@ export default function Tabulated({ keyword }){
             </thead>
             <tbody className='text-left' >{tableRows}</tbody>      
         </table>
+        </div>
         </div>
         </div>
         

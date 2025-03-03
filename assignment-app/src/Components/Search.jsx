@@ -13,10 +13,11 @@ import DataStats from './DataStats'
 
 
 export default function Search() {
-    const {setSearchContext} = useContext(SearchContext)
+    const {setSearchContext, filterTypeOptionsContext, setfilterTypeOptionsContext} = useContext(SearchContext)
     const [inputValue, setInputValue] = useState("")
     const [keyword, setKeyword] = useState("")
     const [searched, setSearch] = useState(false)
+    
     
     //console.log("from search.jsx search context" ,searchContext)
     //console.log("from search.jsx data context", dataContext)
@@ -28,13 +29,17 @@ export default function Search() {
         setSearchContext(inputValue);
         setInputValue("");
         setSearch(true);
+        if(filterTypeOptions != filterTypeOptionsContext){
+            setfilterTypeOptionsContext(filterTypeOptions)
+        }
         
         
     }
     const [filterTypeOptions, setfilterTypeOptions] = useState("model")
-    const handleChange = (e) => {
-        setfilterTypeOptions(e.target.value);
-    };
+    const handleChange = (e) => (
+        setfilterTypeOptions(e.target.value),
+        setfilterTypeOptionsContext(e.target.value)
+);
     
     return (
         <div className='container'>
@@ -62,8 +67,8 @@ export default function Search() {
                 <button className="mx-5 bg-white rounded border-1 " type='submit' style={{width: "350px"}}>Search</button>
             </form>
             <br></br>
-            <DataFetcher filterTypeOptions={filterTypeOptions} keyword={keyword} searched={searched} />
-            <Tabulated keyword={keyword} />
+            <DataFetcher  keyword={keyword} filterTypeOptions={filterTypeOptions} searched={searched} />
+            <Tabulated keyword={keyword}  />
         </div>
     )
 }
