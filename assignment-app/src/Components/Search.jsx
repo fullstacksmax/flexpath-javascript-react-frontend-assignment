@@ -38,11 +38,11 @@ export default function Search() {
     
     return (
         <div className='container'>
-            <p className="mx-5" style={{width: "350px"}} >Select data point to filter search by</p>
+            <p className="mx-5 fs-5 text" style={{width: "350px"}} >Select data point to filter search by</p>
 
             {/* change to dropdown??? */}
-            <select className="form-select form-select-lg mx-5 form-control fs-5 text "   style={{width: "150px"}} aria-label="Default select example" onChange={handleChange}> 
-                <option className="bg-secondary text-white" value="model"  >model</option>
+            <select className="mx-5 dropdown "   style={{width: "150px"}} aria-label="Default select example" onChange={handleChange}>
+                <option className="bg-secondary text-white " value="model"  >model</option>
                 <option className="bg-secondary text-white" value="gender">gender</option>
                 <option className="bg-secondary text-white" value="operatingSystem">operatingSystem</option>
                 <option className="bg-secondary text-white " value="behaviorClass">behaviorClass</option>
@@ -67,3 +67,7 @@ export default function Search() {
         </div>
     )
 }
+
+
+
+

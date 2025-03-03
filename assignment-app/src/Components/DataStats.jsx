@@ -1,4 +1,4 @@
-import { useEffect, useState, useContext, memo } from "react"
+import { useEffect, useState, useContext } from "react"
 import SearchContextProvider, { SearchContext } from './Context'
 import Cards from "./Cards"
 
@@ -7,15 +7,15 @@ import Cards from "./Cards"
 const DataStats = function DataStats({keyword}) {
     const {searchContext, dataContext, setDataContext} = useContext(SearchContext)
     const [count, setCount] = useState("")
-    const [data, setData] = useState([])
-    const [avgAge, setAvgAge] = useState("")
-    const [avgInstalledApps, setAvgInstalledApps] = useState("")
-    const [avgScreenTime, setAvgScreenTime] = useState("")
-    const [avgAppUsage, setAvgAppUsage] = useState("")
-    const [medAge, setMedAge] = useState("")
-    const [medInstalledApps, setMedInstalledApps ] = useState("")
-    const [medScreenTime, setMedScreenTime ] = useState("")
-    const [medAppUsage, setMedAppUsage ] = useState("")
+
+    const {avgAge, setAvgAge} = useContext(SearchContext)
+    const {avgInstalledApps, setAvgInstalledApps} = useContext(SearchContext)
+    const {avgScreenTime, setAvgScreenTime} = useContext(SearchContext)
+    const {avgAppUsage, setAvgAppUsage} = useContext(SearchContext)
+    const {medAge, setMedAge} = useContext(SearchContext)
+    const {medInstalledApps, setMedInstalledApps } = useContext(SearchContext)
+    const {medScreenTime, setMedScreenTime } = useContext(SearchContext)
+    const {medAppUsage, setMedAppUsage } = useContext(SearchContext)
 
     const [appUsageArr, setAppUsageArr] = useState([])
     const [screenTimeArr, setScreenTimeArr] = useState([])
@@ -43,8 +43,6 @@ const DataStats = function DataStats({keyword}) {
     const installedApps = []
     const screenTime = []
     const appUsage = []
-    setCount(dataContext.length)
-    setData(dataContext)
     setCount(dataContext.length)
         /* console.log('useeffect hook count 2', count)
         console.log(count)
