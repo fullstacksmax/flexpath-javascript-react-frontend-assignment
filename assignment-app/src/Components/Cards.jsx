@@ -3,8 +3,6 @@ import SearchContextProvider, { SearchContext } from './Context'
 export default function Cards({ keyword, count }) {
     const {searchContext, dataContext, setDataContext , avgAge, avgInstalledApps , avgScreenTime, avgAppUsage , medAge, medInstalledApps, medScreenTime, medAppUsage} = useContext(SearchContext)  
     const [cards, setCards] = useState("")
-
-  console.log(count)
   useEffect(() => {
     
     const makeCards = () => {
