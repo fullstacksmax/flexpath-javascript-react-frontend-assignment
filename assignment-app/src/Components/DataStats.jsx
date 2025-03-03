@@ -81,9 +81,7 @@ const DataStats = function DataStats({keyword}) {
             /* console.log(installedApps)
             console.log(appUsage)
             console.log(age) */
-            console.log(medAge)
                  setMedAge(((ageArr[count/2] + ageArr[(count/2) + 1]) / 2).toFixed(1))
-                 console.log(medAge)
                  setMedInstalledApps(((installedAppsArr[count/2] + installedAppsArr[(count/2) + 1]) / 2).toFixed(1))
                  setMedScreenTime(((screenTimeArr[count/2] + screenTimeArr[(count/2) + 1]) / 2).toFixed(1))
                  setMedAppUsage(((appUsageArr[count/2] + appUsageArr[(count/2) + 1]) / 2).toFixed(1))
