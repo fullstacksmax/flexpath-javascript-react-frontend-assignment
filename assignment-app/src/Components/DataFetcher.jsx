@@ -34,7 +34,7 @@ const DataFetcher = function DataFetcher({ keyword, filterTypeOptions, searched 
                     'keyword': searchContext
                 });
                 const url = `/api/data/search/?${params.toString()}`
-                //console.log("the url is ", url)
+                console.log("the url is ", url)
 
             const response = await fetch(url)
            // console.log(params.toString())

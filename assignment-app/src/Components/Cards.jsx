@@ -1,21 +1,15 @@
-import React, { useEffect, useContext} from "react"
+import React, { useEffect, useContext, useState} from "react"
 import SearchContextProvider, { SearchContext } from './Context'
-export default function Cards({ count }) {
-      const {searchContext, dataContext, setDataContext} = useContext(SearchContext)  
-      const {avgAge, setAvgAge} = useContext(SearchContext)
-      const {avgInstalledApps, setAvgInstalledApps} = useContext(SearchContext)
-      const {avgScreenTime, setAvgScreenTime} = useContext(SearchContext)
-      const {avgAppUsage, setAvgAppUsage} = useContext(SearchContext)
-      const {medAge, setMedAge} = useContext(SearchContext)
-      const {medInstalledApps, setMedInstalledApps } = useContext(SearchContext)
-      const {medScreenTime, setMedScreenTime } = useContext(SearchContext)
-      const {medAppUsage, setMedAppUsage } = useContext(SearchContext)
+export default function Cards({ keyword, count }) {
+    const {searchContext, dataContext, setDataContext , avgAge, avgInstalledApps , avgScreenTime, avgAppUsage , medAge, medInstalledApps, medScreenTime, medAppUsage} = useContext(SearchContext)  
+    const [cards, setCards] = useState("")
 
+  console.log(count)
   useEffect(() => {
-
+    
     const makeCards = () => {
       if(count === undefined) {
-        
+        setCards(
           <div className="container  ">
           <div className="card-group ">
             <div className="row">
@@ -61,13 +55,13 @@ export default function Cards({ count }) {
             </div>
           </div>
         </div>
+        )
         
     }
-  
+  setCards(
   <div className="container ">
     <div className="card-group">
       <div className="row">
-  
         <div className="col-3">
           <div className="card mb-3 border-dark h-100"  >
             <div className="card-body text-center" >
@@ -77,7 +71,6 @@ export default function Cards({ count }) {
             </div>
           </div>
         </div>
-  
         <div className="col-3">
           <div className="card mb-3 border-dark h-100" >
             <div className="card-body text-center">
@@ -87,7 +80,6 @@ export default function Cards({ count }) {
             </div>
           </div>
         </div>
-  
         <div className="col-3">
           <div className="card mb-3 border-dark h-100" >
             <div className="card-body text-center">
@@ -109,13 +101,22 @@ export default function Cards({ count }) {
       </div>
     </div>
   </div>
+  )
+  
+  
   
 }
 makeCards()
-}, [dataContext])
+}, [searchContext, dataContext, setDataContext , avgAge, avgInstalledApps , avgScreenTime, avgAppUsage , medAge, medInstalledApps, medScreenTime, medAppUsage])
+
+return(
+  <div>
+  {cards}
+  </div>
+)
 }
 
-    
+
 
 
   
@@ -128,41 +129,4 @@ makeCards()
 
 
 
-{/* <div className="row">
-  <div className="col-sm-6">
-    <div className="card">
-      <div className="card-body">
-        <h5 className="card-title">Special title treatment</h5>
-        <p className="card-text">With supporting text below as a natural lead-in to additional content.</p>
-        <a href="#" className="btn btn-primary">Go somewhere</a>
-      </div>
-    </div>
-  </div>
-  <div className="col-sm-6">
-    <div className="card">
-      <div className="card-body">
-        <h5 className="card-title">Special title treatment</h5>
-        <p className="card-text">With supporting text below as a natural lead-in to additional content.</p>
-        <a href="#" className="btn btn-primary">Go somewhere</a>
-      </div>
-    </div>
-  </div>
-  <div className="col-sm-6">
-    <div className="card">
-      <div className="card-body">
-        <h5 className="card-title">Special title treatment</h5>
-        <p className="card-text">With supporting text below as a natural lead-in to additional content.</p>
-        <a href="#" className="btn btn-primary">Go somewhere</a>
-      </div>
-    </div>
-  </div>
-  <div className="col-sm-6">
-    <div className="card">
-      <div className="card-body">
-        <h5 className="card-title">Special title treatment</h5>
-        <p className="card-text">With supporting text below as a natural lead-in to additional content.</p>
-        <a href="#" className="btn btn-primary">Go somewhere</a>
-      </div>
-    </div>
-  </div>
-</div>  */}
+

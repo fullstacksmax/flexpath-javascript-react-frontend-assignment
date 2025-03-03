@@ -87,15 +87,18 @@ const DataStats = function DataStats({keyword}) {
                  setMedAppUsage(((appUsageArr[count/2] + appUsageArr[(count/2) + 1]) / 2).toFixed(1))
             }
         
-            else {
+            if (count % 2 === 1) {
             //console.log(screenTime)
             /* console.log(installedApps)
             console.log(appUsage)
             console.log(age) */
-                 setMedAge((ageArr[(count/2) + 1]).toFixed(1))
-                 setMedInstalledApps((installedAppsArr[(count/2) + 1]).toFixed(1))
-                 setMedScreenTime((screenTimeArr[(count/2) + 1] ).toFixed(1))
-                 setMedAppUsage((appUsageArr[(count/2) + 1]).toFixed(1))
+            console.log('odd result median')
+            console.log(medAge)
+                 setMedAge((ageArr[(count/2) + 1]))
+                 console.log(medAge)
+                 setMedInstalledApps((installedAppsArr[(count/2) + 1]))
+                 setMedScreenTime((screenTimeArr[(count/2) + 1] ))
+                 setMedAppUsage((appUsageArr[(count/2) + 1]))
             }
             if(dataContext != null)createArrays();
         }
@@ -150,8 +153,7 @@ const DataStats = function DataStats({keyword}) {
     
     return (
         <div className="mx-5">
-        <Cards avgAge={avgAge} avgInstalledApps={avgInstalledApps} avgScreenTime={avgScreenTime} avgAppUsage={avgAppUsage} medAge={medAge}
-        medInstalledApps={medInstalledApps} medScreenTime={medScreenTime} medAppUsage={medAppUsage} count={count} />
+        <Cards count={count} keyword={keyword} />
             <div className="fs-5 text">
             <br></br>
             Displaying {count} Results
