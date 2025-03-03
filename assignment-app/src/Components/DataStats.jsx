@@ -134,7 +134,7 @@ const DataStats = function DataStats({keyword}) {
          
         
         
-    },[searchContext, dataContext, setDataContext , avgAge, avgInstalledApps , avgScreenTime, avgAppUsage , medAge, medInstalledApps, medScreenTime, medAppUsage])
+    },[dataContext, count, keyword])
     
     
     /* console.log(`age is `, age)
