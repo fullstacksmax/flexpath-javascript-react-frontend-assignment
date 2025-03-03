@@ -151,16 +151,13 @@ const DataStats = function DataStats({keyword}) {
     }
     
     return (
-        <div>
-            <br></br>
+        <div className="mx-5">
         <Cards avgAge={avgAge} avgInstalledApps={avgInstalledApps} avgScreenTime={avgScreenTime} avgAppUsage={avgAppUsage} medAge={medAge}
         medInstalledApps={medInstalledApps} medScreenTime={medScreenTime} medAppUsage={medAppUsage} count={count} />
+            <div className="fs-5 text">
             <br></br>
             Displaying {count} Results
-            
-
-            
-            
+            </div>
         </div>
     );
 }

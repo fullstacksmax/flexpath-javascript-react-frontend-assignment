@@ -5,7 +5,7 @@ import { createContext, useState } from "react";
 export const SearchContext = createContext("");
 
 
-export default function SearchContextProvider({children}){
+export default function SearchContextProvider({ children }) {
     const [searchContext, setSearchContext] = useState(null)
     const [dataContext, setDataContext] = useState(null)
     

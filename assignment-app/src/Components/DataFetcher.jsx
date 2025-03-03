@@ -14,7 +14,7 @@ import DataStatsTwo from "./Old/DataStatsTwo"
 import SearchContextProvider, { SearchContext } from './Context'
 
 
-const DataFetcher = function DataFetcher({keyword, filterTypeOptions, searched}) {
+const DataFetcher = function DataFetcher({ keyword, filterTypeOptions, searched }) {
         const {searchContext, setSearchContext, dataContext, setDataContext} = useContext(SearchContext)      
         const [data, setData] = useState(null);
         const [loading, setLoading] = useState(false)
@@ -58,7 +58,7 @@ const DataFetcher = function DataFetcher({keyword, filterTypeOptions, searched})
         }, [searchContext]);
         
 
-        if (loading) return <div>Loading...</div>;
+        if (loading) return <div>Loading Record...</div>;
         if (error) return <div>{error}</div>;
         if (!searched) return null;
         if (!data) return null;
@@ -69,11 +69,7 @@ const DataFetcher = function DataFetcher({keyword, filterTypeOptions, searched})
          
         return(
             <div> 
-             {/*<DataStats data={data}/>*/}
              <DataStats  keyword={keyword}/>
-             
-             
-
              </div>
         )
         
@@ -83,39 +79,5 @@ const DataFetcher = function DataFetcher({keyword, filterTypeOptions, searched})
 
 export default DataFetcher
     
-/*
-1: 
-Age
-: 
-"47"
-App Usage Time (min/day)
-: 
-"268"
-Battery Drain (mAh/day)
-: 
-"1331"
-Data Usage (MB/day)
-: 
-"944"
-Device Model
-: 
-"OnePlus 9"
-Gender
-: 
-"Female"
-Number of Apps Installed
-: 
-"42"
-Operating System
-: 
-"Android"
-Screen On Time (hours/day)
-: 
-"4.7"
-User Behavior Class
-: 
-"3"
-User ID
-: 
-"2"*/
+
    

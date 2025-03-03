@@ -15,10 +15,11 @@ export default function Home() {
     return(
 
         //needs formatting currently stuck to left align
-        <div>
+        <div className='container'>
+            <div className="mx-auto">
             <h1>User Behavior Dataset</h1>
-            <p1>This dataset provides a comprehensive analysis of mobile device usage patterns and user behavior classification. It contains 700 samples of user data, including metrics such as app usage time, screen-on time, battery drain, and data consumption. Each entry is categorized into one of five user behavior classes, ranging from light to extreme usage, allowing for insightful analysis and modeling.
-            </p1>
+            <p>This dataset provides a comprehensive analysis of mobile device usage patterns and user behavior classification. It contains 700 samples of user data, including metrics such as app usage time, screen-on time, battery drain, and data consumption. Each entry is categorized into one of five user behavior classes, ranging from light to extreme usage, allowing for insightful analysis and modeling.
+            </p>
             <h2>Key Features:</h2>
             <ul>
                 <li>User ID: Unique identifier for each user.</li>
@@ -35,7 +36,7 @@ export default function Home() {
             </ul>
             <br></br>
             <a href="https://www.kaggle.com/datasets/valakhorasani/mobile-device-usage-and-user-behavior-dataset?resource=download">Sourced from this Kaggle Dataset</a>
-            
+            </div>
         </div>
     )
 }
